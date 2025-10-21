@@ -1,0 +1,50 @@
+{
+    "name": "VGGish",
+    "type": "embedding extractor",
+    "link": "https://essentia.upf.edu/models/feature-extractors/vggish/audioset-vggish-3.pb",
+    "version": "1",
+    "description": "audio embedding extractor trained to predict tags from Youtube videos",
+    "author": "Pablo Alonso",
+    "email": "pablo.alonso@upf.edu",
+    "release_date": "2020-09-28",
+    "framework": "tensorflow",
+    "framework_version": "1.15.0",
+    "classes": "",
+    "model_types": [
+        "frozen_model"
+    ],
+    "dataset": {
+        "name": "preliminary subset of Youtube-8M",
+        "size": "70M",
+        "metrics": {}
+    },
+    "schema": {
+        "inputs": [
+            {
+                "name": "model/Placeholder",
+                "type": "float",
+                "shape": [
+                    96,
+                    64
+                ]
+            }
+        ],
+        "outputs": [
+            {
+                "name": "model/vggish/embeddings",
+                "type": "float",
+                "shape": [
+                    1,
+                    128
+                ],
+                "op": "fully connected",
+                "output_purpose": "embeddings"
+            }
+        ]
+    },
+    "citation": "@incollection{45611,\ntitle={CNN Architectures for Large-Scale Audio Classification},\nauthor={Shawn Hershey and Sourish Chaudhuri and Daniel P. W. Ellis and Jort F. Gemmeke and Aren Jansen and Channing Moore and Manoj Plakal and Devin Platt and Rif A. Saurous and Bryan Seybold and Malcolm Slaney and Ron Weiss and Kevin Wilson},\nyear={2017},\nURL={https://arxiv.org/abs/1609.09430},\nbooktitle={International Conference on Acoustics, Speech and Signal Processing (ICASSP)}}",
+    "inference": {
+        "sample_rate": 16000,
+        "algorithm": "TensorflowPredictVGGish"
+    }
+}

@@ -1,0 +1,220 @@
+{
+  "pipelines": [
+    {
+      "name": "genre",
+      "enabled": true,
+      "data_folder": "data",
+      "embedding_model_path": "models/embedding/discogs_effnet/discogs-effnet-bs64-1.pb",
+      "prediction_model_path": "models/classification/genre/genre_discogs400-discogs-effnet-1.pb",
+      "metadata_path": "models/classification/genre/genre_discogs400-discogs-effnet-1.json",
+      "result_file_path": "result/result_main/result_genre.txt",
+      "tags_to_write": [
+        "GENRE_AUTO"
+      ],
+      "threshold": 0.1,
+      "min_freq": 2,
+      "min_score": 0.05,
+      "max_labels": 5,
+      "input_node": "serving_default_model_Placeholder",
+      "output_node": "PartitionedCall:0"
+    },
+    {
+      "name": "instrumentation",
+      "enabled": false,
+      "data_folder": "data",
+      "embedding_model_path": "models/embedding/discogs_effnet/discogs-effnet-bs64-1.pb",
+      "prediction_model_path": "models/classification/instrumentation/mtg_jamendo_instrument-discogs-effnet-1.pb",
+      "metadata_path": "models/classification/instrumentation/mtg_jamendo_instrument-discogs-effnet-1.json",
+      "result_file_path": "result/result_main/result_instrumentation.txt",
+      "tags_to_write": [
+        "TXXX:INSTRUMENT"
+      ],
+      "threshold": 0.2,
+      "min_freq": 1,
+      "min_score": 0.1,
+      "max_labels": 3,
+      "input_node": "model/Placeholder",
+      "output_node": "model/Sigmoid"
+    },
+    {
+      "name": "moodtheme_jamendo",
+      "enabled": false,
+      "data_folder": "data",
+      "embedding_model_path": "models/embedding/discogs_effnet/discogs-effnet-bs64-1.pb",
+      "prediction_model_path": "models/classification/moods_and_context/moodtheme/mtg_jamendo_moodtheme-discogs-effnet-1.pb",
+      "metadata_path": "models/classification/moods_and_context/moodtheme/mtg_jamendo_moodtheme-discogs-effnet-1.json",
+      "result_file_path": "result/result_main/result_moodtheme_jamendo.txt",
+      "tags_to_write": [
+        "TXXX:MOOD_THEMES"
+      ],
+      "threshold": 0.15,
+      "min_freq": 1,
+      "min_score": 0.07,
+      "max_labels": 3,
+      "input_node": "model/Placeholder",
+      "output_node": "model/Sigmoid"
+    },
+    {
+      "name": "approachability",
+      "enabled": false,
+      "data_folder": "data",
+      "embedding_model_path": "models/embedding/discogs_effnet/discogs-effnet-bs64-1.pb",
+      "prediction_model_path": "models/classification/moods_and_context/approachability/approachability_3c-discogs-effnet-1.pb",
+      "metadata_path": "models/classification/moods_and_context/approachability/approachability_3c-discogs-effnet-1.json",
+      "result_file_path": "result/result_main/result_approachability.txt",
+      "tags_to_write": [
+        "TXXX:MOOD_APPROACHABILITY"
+      ],
+      "threshold": 0.1,
+      "min_freq": 1,
+      "min_score": 0.7,
+      "max_labels": 1,
+      "input_node": "model/Placeholder",
+      "output_node": "model/Softmax"
+    },
+    {
+      "name": "engagement",
+      "enabled": false,
+      "data_folder": "data",
+      "embedding_model_path": "models/embedding/discogs_effnet/discogs-effnet-bs64-1.pb",
+      "prediction_model_path": "models/classification/moods_and_context/engagement/engagement_3c-discogs-effnet-1.pb",
+      "metadata_path": "models/classification/moods_and_context/engagement/engagement_3c-discogs-effnet-1.json",
+      "result_file_path": "result/result_main/result_engagement.txt",
+      "tags_to_write": [
+        "TXXX:MOOD_ENGAGEMENT"
+      ],
+      "threshold": 0.1,
+      "min_freq": 1,
+      "min_score": 0.7,
+      "max_labels": 1,
+      "input_node": "model/Placeholder",
+      "output_node": "model/Softmax"
+    },
+    {
+      "name": "danceability",
+      "enabled": false,
+      "data_folder": "data",
+      "embedding_model_path": "models/embedding/discogs_effnet/discogs-effnet-bs64-1.pb",
+      "prediction_model_path": "models/classification/moods_and_context/danceability/danceability-discogs-effnet-1.pb",
+      "metadata_path": "models/classification/moods_and_context/danceability/danceability-discogs-effnet-1.json",
+      "result_file_path": "result/result_main/result_danceability.txt",
+      "tags_to_write": [
+        "TXXX:MOOD_DANCEABLE"
+      ],
+      "threshold": 0.1,
+      "min_freq": 1,
+      "min_score": 0.7,
+      "max_labels": 1,
+      "input_node": "model/Placeholder",
+      "output_node": "model/Softmax"
+    },
+    {
+      "name": "mood_aggressive",
+      "enabled": false,
+      "data_folder": "data",
+      "embedding_model_path": "models/embedding/discogs_effnet/discogs-effnet-bs64-1.pb",
+      "prediction_model_path": "models/classification/moods_and_context/mood_aggressive/mood_aggressive-discogs-effnet-1.pb",
+      "metadata_path": "models/classification/moods_and_context/mood_aggressive/mood_aggressive-discogs-effnet-1.json",
+      "result_file_path": "result/result_main/result_mood_aggressive.txt",
+      "tags_to_write": [
+        "TXXX:MOOD_AGGRESSIVE"
+      ],
+      "threshold": 0.1,
+      "min_freq": 1,
+      "min_score": 0.7,
+      "max_labels": 1,
+      "input_node": "model/Placeholder",
+      "output_node": "model/Softmax"
+    },
+    {
+      "name": "mood_happy",
+      "enabled": false,
+      "data_folder": "data",
+      "embedding_model_path": "models/embedding/discogs_effnet/discogs-effnet-bs64-1.pb",
+      "prediction_model_path": "models/classification/moods_and_context/mood_happy/mood_happy-discogs-effnet-1.pb",
+      "metadata_path": "models/classification/moods_and_context/mood_happy/mood_happy-discogs-effnet-1.json",
+      "result_file_path": "result/result_main/result_mood_happy.txt",
+      "tags_to_write": [
+        "TXXX:MOOD_HAPPY"
+      ],
+      "threshold": 0.1,
+      "min_freq": 1,
+      "min_score": 0.7,
+      "max_labels": 1,
+      "input_node": "model/Placeholder",
+      "output_node": "model/Softmax"
+    },
+    {
+      "name": "mood_party",
+      "enabled": false,
+      "data_folder": "data",
+      "embedding_model_path": "models/embedding/discogs_effnet/discogs-effnet-bs64-1.pb",
+      "prediction_model_path": "models/classification/moods_and_context/mood_party/mood_party-discogs-effnet-1.pb",
+      "metadata_path": "models/classification/moods_and_context/mood_party/mood_party-discogs-effnet-1.json",
+      "result_file_path": "result/result_main/result_mood_party.txt",
+      "tags_to_write": [
+        "TXXX:MOOD_PARTY"
+      ],
+      "threshold": 0.1,
+      "min_freq": 1,
+      "min_score": 0.7,
+      "max_labels": 1,
+      "input_node": "model/Placeholder",
+      "output_node": "model/Softmax"
+    },
+    {
+      "name": "mood_relaxed",
+      "enabled": false,
+      "data_folder": "data",
+      "embedding_model_path": "models/embedding/discogs_effnet/discogs-effnet-bs64-1.pb",
+      "prediction_model_path": "models/classification/moods_and_context/mood_relaxed/mood_relaxed-discogs-effnet-1.pb",
+      "metadata_path": "models/classification/moods_and_context/mood_relaxed/mood_relaxed-discogs-effnet-1.json",
+      "result_file_path": "result/result_main/result_mood_relaxed.txt",
+      "tags_to_write": [
+        "TXXX:MOOD_RELAXED"
+      ],
+      "threshold": 0.1,
+      "min_freq": 1,
+      "min_score": 0.7,
+      "max_labels": 1,
+      "input_node": "model/Placeholder",
+      "output_node": "model/Softmax"
+    },
+    {
+      "name": "mood_sad",
+      "enabled": false,
+      "data_folder": "data",
+      "embedding_model_path": "models/embedding/discogs_effnet/discogs-effnet-bs64-1.pb",
+      "prediction_model_path": "models/classification/moods_and_context/mood_sad/mood_sad-discogs-effnet-1.pb",
+      "metadata_path": "models/classification/moods_and_context/mood_sad/mood_sad-discogs-effnet-1.json",
+      "result_file_path": "result/result_main/result_mood_sad.txt",
+      "tags_to_write": [
+        "TXXX:MOOD_SAD"
+      ],
+      "threshold": 0.1,
+      "min_freq": 1,
+      "min_score": 0.7,
+      "max_labels": 1,
+      "input_node": "model/Placeholder",
+      "output_node": "model/Softmax"
+    },
+    {
+      "name": "arousal_valence_deam",
+      "enabled": false,
+      "data_folder": "data",
+      "embedding_model_path": "models/embedding/audioset-vggish-3/audioset-vggish-3.pb",
+      "prediction_model_path": "models/classification/moods_and_context/arousal_valence_deam/deam-audioset-vggish-2.pb",
+      "metadata_path": "models/classification/moods_and_context/arousal_valence_deam/deam-audioset-vggish-2.json",
+      "result_file_path": "result/result_main/result_arousal_valence.txt",
+      "tags_to_write": [
+        "TXXX:MC_AROUSAL_VALUE", "TXXX:MC_VALENCE_VALUE"
+      ],
+      "threshold": 0.0, 
+      "min_freq": 0,
+      "min_score": 0.0,
+      "max_labels": 2, 
+      "input_node": "model/Placeholder",
+      "output_node": "model/Identity"
+    }
+  ]
+}

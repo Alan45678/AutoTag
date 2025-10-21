@@ -1,0 +1,76 @@
+{
+    "name": "arousal_valence",
+    "type": "regression model",
+    "link": "https://essentia.upf.edu/models/classification-heads/deam/deam-audioset-vggish-2.pb",
+    "version": "2",
+    "description": "Transfer Learning model for Music Emotion Recognition in Arousal-Valence domain with Essentia pretrained model, Musicnn, and DEAM dataset.",
+    "author": "Pablo Alonso",
+    "email": "pablo.alonso@upf.edu",
+    "release_date": "07/02/2023",
+    "framework": "tensorflow",
+    "framework_version": "2.6.0",
+    "classes": [
+        "valence",
+        "arousal"
+    ],
+    "programming_env": {
+        "language": "python",
+        "version": "3.7",
+        "others": ""
+    },
+    "model_types": [
+        "frozen_model"
+    ],
+    "dataset": {
+        "name": "DEAM",
+        "size": "1802 songs",
+        "link": "https://cvml.unige.ch/databases/DEAM/",
+        "metrics": {
+            "arousal": {
+                "Concordance Correlation Coefficient": 0.614,
+                "Pearson Correlation Coefficient": 0.79,
+                "R^2 Score": 0.591,
+                "Root Mean Square Error": 0.673
+            },
+            "valence": {
+                "Concordance Correlation Coefficient": 0.753,
+                "Pearson Correlation Coefficient": 0.743,
+                "R^2 Score": 0.524,
+                "Root Mean Square Error": 0.655
+            }
+        }
+    },
+    "schema": {
+        "inputs": [
+            {
+                "name": "model/Placeholder",
+                "type": "float",
+                "shape": [
+                    128
+                ]
+            }
+        ],
+        "outputs": [
+            {
+                "name": "model/Identity",
+                "type": "float",
+                "op": "Identity",
+                "shape": [
+                    2
+                ],
+                "description": "arousal-valence values represented as (valence, arousal) pairs.",
+                "output_purpose": "predictions"
+            }
+        ]
+    },
+    "citation": "@inproceedings{bogdanov2022musav,\n  title={MUSAV: a dataset of relative arousal-valence annotations for validation of audio models},\n  author={Bogdanov, Dmitry and Lizarraga Seijas, Xavier and Alonso-Jim{\\'e}nez, Pablo and Serra, Xavier},\n  booktitle={Conference of the International Society for Music Information Retrieval (ISMIR)},\n  year={2022}\n}",
+    "inference": {
+        "sample_rate": 16000,
+        "algorithm": "TensorflowPredict2D",
+        "embedding_model": {
+            "algorithm": "TensorflowPredictVGGish",
+            "model_name": "audioset-vggish-3",
+            "link": "https://essentia.upf.edu/models/feature-extractors/vggish/audioset-vggish-3.pb"
+        }
+    }
+}

@@ -1,0 +1,92 @@
+# pyproject.toml
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "auto_tag"
+version = "1.0.2"
+description = "Pipeline Python pour prédire et taguer les genres et humeurs audio en utilisant TensorFlow/Essentia."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Alan", email = "your_email@example.com" } # METTRE A JOUR
+]
+maintainers = [
+    { name = "Alan", email = "your_email@example.com" } # METTRE A JOUR
+]
+keywords = [
+    "audio", "tagging", "genre", "mood", "music",
+    "tensorflow", "essentia", "mutagen", "id3", "metadata"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Multimedia :: Sound/Audio :: Analysis",
+    "Topic :: Multimedia :: Sound/Audio :: Taggers",
+    "Environment :: Console",
+    "Natural Language :: French",
+    "Natural Language :: English",
+]
+
+dependencies = [
+    "essentia",
+    "mutagen>=1.46.0",
+    "numpy>=1.23.0",
+    "tqdm>=4.66.0",
+    "tensorflow>=2.10.0", # Note: Heavy dependency, see docs
+    "six"
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0",
+    "pytest-mock",
+]
+dev = [
+    "auto_tag[test]",
+    "ruff", # Linter/formatter
+    "sphinx>=5.0",
+    "sphinx-rtd-theme>=1.0",
+    "sphinx-autodoc-typehints", # Handles Python type hints in docs
+    # "myst-parser", # Only if Markdown files are included in docs
+]
+
+[project.urls]
+Homepage = "https://github.com/your-username/auto_tag" # METTRE A JOUR
+Repository = "https://github.com/your-username/auto_tag" # METTRE A JOUR
+"Bug Tracker" = "https://github.com/your-username/auto_tag/issues" # METTRE A JOUR
+# Documentation = "URL_TO_DOCS" # Add if hosted elsewhere
+
+# --- Tool Configuration ---
+
+[tool.setuptools.packages.find]
+where = ["src"]
+namespaces = false
+
+[tool.pytest.ini_options]
+# Add project root to PYTHONPATH for imports during tests
+pythonpath = ["."]
+testpaths = ["tests"]
+# addopts = "-v" # Optional: verbose output
+
+[tool.ruff]
+# Example Ruff config (optional, can be customized)
+line-length = 88
+select = ["E", "W", "F", "I", "C", "B"] # Common rule sets
+ignore = []
+# fixable = ["ALL"]
+target-version = "py310"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
